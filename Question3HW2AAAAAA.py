@@ -38,7 +38,7 @@ class ChanceNode(Node):
         """
         :return: expected cost of this chance node
         """
-        exp_cost = self.cost  # expected cost initialized with the cost of visiting the current node
+        exp_cost = self.cost  # EC for node
         i = 0
         for node in self.futureNodes:
             exp_cost += self.probs[i]*node.get_expected_cost()
@@ -47,7 +47,7 @@ class ChanceNode(Node):
 
     def get_expected_healthindex(self):
 
-        exp_healthindex = self.healthindex  # expected cost initialized with the cost of visiting the current node
+        exp_healthindex = self.healthindex  # HUI for node
         i = 0
         for node in self.futureNodes:
             exp_healthindex += self.probs[i]*node.get_expected_healthindex()
@@ -78,14 +78,14 @@ class DecisionNode(Node):
 
     def get_expected_costsDN(self):
         """ returns the expected costs of future nodes"""
-        outcomes = dict() # dictionary to store the expected cost of future nodes along with their names as keys
+        outcomes = dict() # dictionary to store the EC of future nodes w names
         for node in self.futureNode:
             outcomes = node.get_expected_cost()
         return outcomes
 #I guess you'd probably only need this if you had to find D1 HUI? Looks like we don't need it but may be good
 #to have the function available
     def get_expected_utilityDN(self):
-        outcomes = dict() # dictionary to store the expected cost of future nodes along with their names as keys
+        outcomes = dict() # dictionary to store the HUI score of future nodes along w names
         for node in self.futureNode:
             outcomes = node.get_expected_utility()
 
