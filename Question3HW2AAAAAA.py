@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Sat Feb  3 11:54:19 2018
+Created on Sat Feb  3 15:54:19 2018
+
+@author: Aslan
+"""
 
 class Node:
     """ base class """
@@ -102,6 +105,7 @@ D1 = DecisionNode('D1', 0, [C1, C3], 0)
 
 print('The Decision Node expected cost is' )
 print (D1.get_expected_costsDN())
+
 #we want the expected cost of C1/C3
 print('The C1 Node expected cost is')
 print(C1.get_expected_cost())
