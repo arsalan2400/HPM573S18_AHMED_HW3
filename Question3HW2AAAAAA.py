@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Feb  3 15:54:19 2018
+
+@author: Aslan
+"""
+
 class Node:
     """ base class """
     def __init__(self, name, cost, healthindex):
@@ -68,7 +76,7 @@ class DecisionNode(Node):
         Node.__init__(self, name, cost, healthindex)
         self.futureNode = future_nodes
 
-    def get_expected_costs(self):
+    def get_expected_costsDN(self):
         """ returns the expected costs of future nodes"""
         outcomes = dict() # dictionary to store the expected cost of future nodes along with their names as keys
         for node in self.futureNode:
@@ -76,7 +84,7 @@ class DecisionNode(Node):
         return outcomes
 #I guess you'd probably only need this if you had to find D1 HUI? Looks like we don't need it but may be good
 #to have the function available
-    def get_expected_utility(self):
+    def get_expected_utilityDN(self):
         outcomes = dict() # dictionary to store the expected cost of future nodes along with their names as keys
         for node in self.futureNode:
             outcomes = node.get_expected_utility()
@@ -96,7 +104,7 @@ D1 = DecisionNode('D1', 0, [C1, C3], 0)
 
 
 print('The Decision Node expected cost is' )
-print (D1.get_expected_costs())
+print (D1.get_expected_costsDN())
 #we want the expected cost of C1/C3
 print('The C1 Node expected cost is')
 print(C1.get_expected_cost())
@@ -107,3 +115,4 @@ print('The C1 Node expected health index score is')
 print(C1.get_expected_healthindex())
 print('The C3 Node expected health index score is')
 print(C3.get_expected_healthindex())
+
