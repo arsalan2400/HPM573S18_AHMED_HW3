@@ -103,8 +103,6 @@ C3 = ChanceNode('C3', 2, [T4, T5], [0.2, 0.8], 0.1)
 D1 = DecisionNode('D1', 0, [C1, C3], 0)
 
 
-print('The Decision Node expected cost is' )
-print (D1.get_expected_costs())
 #we want the expected cost of C1/C3
 print('The C1 Node expected cost is')
 print(C1.get_expected_cost())
