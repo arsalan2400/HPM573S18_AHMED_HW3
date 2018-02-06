@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Mon Feb  5 11:52:11 2018
-
 @author: Arsalan
 """
 
@@ -21,7 +20,13 @@ class Node:
         """ abstract method to be overridden in derived classes
         :returns expected cost of this node """
         raise NotImplementedError("This is an abstract method and needs to be implemented in derived classes.")
+        
+    def get_expected_healthindex(self):
+        """ abstract method to be overridden in derived classes
+        :returns expected HUI score of this node """
+        raise NotImplementedError("This is an abstract method and needs to be implemented in derived classes.")
 
+        
 class ChanceNode(Node):
 
     def __init__(self, name, cost, future_nodes, probs, healthindex):
@@ -32,7 +37,6 @@ class ChanceNode(Node):
         Node.__init__(self, name, cost, healthindex)
         self.futureNodes = future_nodes
         self.probs = probs
-        self.healthindex = healthindex
 
     def get_expected_cost(self):
         """
@@ -44,6 +48,7 @@ class ChanceNode(Node):
             exp_cost += self.probs[i]*node.get_expected_cost()
             i += 1
         return exp_cost
+
 
     def get_expected_healthindex(self):
 
@@ -80,14 +85,16 @@ class DecisionNode(Node):
         """ returns the expected costs of future nodes"""
         outcomes = dict() # dictionary to store the expected cost of future nodes along with their names as keys
         for node in self.futureNode:
-            outcomes = node.get_expected_cost()
+            outcomes[node.name] = node.get_expected_cost()
         return outcomes
+    
 #I guess you'd probably only need this if you had to find D1 HUI? Looks like we don't need it but may be good
 #to have the function available
     def get_expected_utility(self):
         outcomes = dict() # dictionary to store the expected cost of future nodes along with their names as keys
         for node in self.futureNode:
-            outcomes = node.get_expected_utility()
+            outcomes[node.name] = node.get_expected_utility()
+        return outcomes
 
 # create the terminal nodes
 T1 = TerminalNode('T1', 10, 0.9)
@@ -97,11 +104,10 @@ T4 = TerminalNode('T4', 40, 0.6)
 T5 = TerminalNode('T5', 50, 0.5)
 
 #the utility probs  are at the end
-C2 = ChanceNode('C2', 15, [T1, T2], [0.1, 0.9], 0.7)
-C1 = ChanceNode('C1', 0, [C2, T3], [0.4, 0.6], 0.2)
-C3 = ChanceNode('C3', 2, [T4, T5], [0.2, 0.8], 0.1)
+C2 = ChanceNode('C2', 35, [T1, T2], [0.7, 0.3], 0)
+C1 = ChanceNode('C1', 25, [C2, T3], [0.2, 0.8], 0)
+C3 = ChanceNode('C3', 45, [T4, T5], [0.1, 0.9], 0)
 D1 = DecisionNode('D1', 0, [C1, C3], 0)
-
 
 #we want the expected cost of C1/C3
 print('The C1 Node expected cost is')
