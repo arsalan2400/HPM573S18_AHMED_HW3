@@ -12,8 +12,7 @@ The total cost in USD($) is...
 7000
 
 Question 2
-The Decision Node expected cost is
-50.0
+
 The C1 Node expected cost is
 31.6
 The C3 Node expected cost is
