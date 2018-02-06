@@ -12,12 +12,11 @@ The total cost in USD($) is...
 7000
 
 Question 2
-
 The C1 Node expected cost is
-31.6
+58.6
 The C3 Node expected cost is
-50.0
+94.0
 The C1 Node expected health index score is
-1.224
+0.734
 The C3 Node expected health index score is
-0.62
+0.51
